@@ -1,0 +1,227 @@
+///Test program:
+#include<bits/stdc++.h>
+using namespace std;
+#define LL  long long
+#define pii pair<int, int>
+
+
+int main(){
+/**
+
+    3
+    5
+    90
+
+    O/P:
+    1
+    3
+    -1
+    
+    0000 0000 0000 0000 0000 0000 0000 0000
+    
+*/
+    int ara[100] = {0};
+    memset(ara, 0, sizeof ara);
+
+    for(int i = 0; i < 4; i++) {
+        int a, b; cin>>a>>b;
+        ara[b] = a;
+    }
+
+    for(int i = 0; i < 3; i++){
+        int a; cin>>a;
+        cout<<ara[a]<<'\n';
+    }
+}
+
+
+///Problem B
+#include<bits/stdc++.h>
+using namespace std;
+#define LL  long long
+#define pii pair<int, int>
+
+
+int main(){
+    //freopen("ip.txt", "r", stdin);
+/**
+    1  3
+    3  5
+    34 56
+    45 67
+
+
+    3
+    5
+    90
+
+    O/P:
+    1
+    3
+    -1
+    int ara[1000] = {-1};
+    ara[-3] == ??? error
+    ara[1000000000] = ((10^9 x 4)/1024)/1024;
+
+
+    ara[3] = 1;
+    ara[5] = 3;
+    ara[56] = 34;
+
+    query:
+    cout<<ara[3];
+
+
+    for(int i = 0; i < 4; i++) {
+        int a, b; cin>>a>>b;
+        ara[b] = a;
+    }
+
+    query:
+    for(int i = 0; i < 3; i++){
+        int a; cin>>a;
+        cout<<ara[a]<<'\n';
+    }
+    string word = "online";
+    mp[word] = "boy";
+    mp["goru"] = "chagol"
+    mp["dami"] = "sosta"
+    mp[-1000000000] = 100;
+
+    map<key, value> mp;
+    map<string, string> mp;
+    map< vector<int>, string> mp;
+    map< pair<int, int>, vector<int> > mp;
+
+
+*/
+    map<string, string> mss;
+    string s, s1, s2;
+    while(1){
+        getline(cin, s);
+        if(s == "") break;
+
+        /// s = dog ogday
+        /// siam rakib suhel retina
+        /// s = cat atcay
+
+        stringstream ss(s);
+        string word[3], tmp;
+        /// word[0] = dog -> first, word[1] = ogday -> second
+        int i = 0;
+        while(ss >> tmp){
+            word[i] = tmp;
+            i++;
+        }
+        ///word[0] = dog;
+        ///word[1] = ogday;
+        mss[word[1]] = word[0];
+    }
+    //1 2 3
+    string w;
+    while(cin>>w){
+       if(mss[w] != "") cout<<mss[w]<<'\n';
+       else cout<<"eh\n";
+    }
+}
+
+
+///Problem C
+#include<bits/stdc++.h>
+using namespace std;
+#define LL  long long
+#define pii pair<int, int>
+#define ff  first
+#define ss  second
+
+int main(){
+    //freopen("ip.txt", "r", stdin);
+    map<LL, LL> mp;
+    vector<LL> v;
+    vector<LL> :: iterator it;
+
+    LL x;
+    /// 3 1 2 5
+    while(cin>>x){
+        mp[x]++;
+        it = find(v.begin(), v.end(), x);
+        if(it == v.end()) v.push_back(x);
+    }
+    //for(auto it : mp) cout<<it.ff<<" "<<it.ss<<'\n';
+    for(auto it : v) cout<<it<<' '<<mp[it]<<'\n';
+
+
+}
+
+
+///Problem D
+
+/**
+3 2 1
+
+1 2 3
+
+1 2 3 4 5 6 9 8 7 / 7 8 9
+
+1 2 3 4 5 6 7 8 9
+yes
+7 9
+
+                i     j
+original: 1 2 3 7 6 5 4 8 9
+
+reversed: 1 2 3 4 5 6 7 8 9
+
+sorted :  1 2 3 4 5 6 7 8 9
+
+v =  1 2 3 4
+sr = 1 2 3 4
+
+
+
+
+*/
+#include<bits/stdc++.h>
+using namespace std;
+#define LL  long long
+#define pii pair<int, int>
+
+
+int main(){
+    int n; cin>>n;
+    vector<int> v, sorted;
+    for(int i = 1; i <= n; i++){
+        int x;
+        cin>>x;
+        v.push_back(x);
+    }
+    sorted = v;
+    sort(sorted.begin(), sorted.end());
+    ///already sorted
+    if(v == sorted) {
+        cout<<"yes\n";
+        cout<<"1 1\n";
+        return 0;
+    }
+    int i = -1, j = -1;
+    for(int k = 0; k < n; k++){
+        if(v[k] != sorted[k]) {
+            i = k;
+            break;
+        }
+    }
+    for(int k = n-1; k >= 0; k--){
+        if(sorted[k] != v[k]){
+            j = k;
+            break;
+        }
+    }
+    reverse(v.begin()+i, v.begin()+j+1);
+    if(v == sorted){
+        cout<<"yes\n";
+        cout<<i+1<<' '<<j+1<<"\n";
+    }
+    else cout<<"no\n";
+}
+
+
